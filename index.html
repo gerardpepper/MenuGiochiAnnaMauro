@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I giochi di Annalisa &amp; Mauro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap">
+<style>
+  :root{
+    --sky-top:#7ec8f2; --sky-bot:#dff2ff;
+    --ink:#3a2c4a; --panel:#fffdf7; --panel-line:#ecd9b0;
+    --accent:#ff6f91; --accent-dark:#e84a72; --gold:#f4c430;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; min-height:100%;
+    font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(var(--sky-top),var(--sky-bot));
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:24px 18px calc(24px + env(safe-area-inset-bottom,0px));
+    overflow-x:hidden;
+    -webkit-tap-highlight-color:transparent;
+  }
+  /* drifting clouds */
+  .cloud{position:fixed;background:rgba(255,255,255,.85);border-radius:50%;filter:blur(.3px);z-index:0;pointer-events:none;}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%;}
+  .c1{width:90px;height:34px;top:12%;left:-120px;animation:drift 34s linear infinite;}
+  .c2{width:64px;height:26px;top:26%;left:-120px;animation:drift 46s linear infinite 6s;}
+  .c3{width:110px;height:40px;top:72%;left:-140px;animation:drift 40s linear infinite 3s;}
+  .cloud.c1::before{width:46px;height:46px;top:-20px;left:14px;}
+  .cloud.c1::after{width:34px;height:34px;top:-12px;left:46px;}
+  .cloud.c2::before{width:34px;height:34px;top:-16px;left:10px;}
+  .cloud.c3::before{width:54px;height:54px;top:-26px;left:18px;}
+  .cloud.c3::after{width:40px;height:40px;top:-16px;left:56px;}
+  @keyframes drift{to{transform:translateX(calc(100vw + 160px));}}
+  @media (prefers-reduced-motion: reduce){ .cloud{animation:none; display:none;} }
+
+  .wrap{position:relative;z-index:1;width:100%;max-width:440px;text-align:center;}
+  .rings{font-size:38px;margin-bottom:2px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.08));}
+  h1{
+    margin:0; line-height:1.05;
+    font-size:clamp(30px,9vw,44px); font-weight:800; color:var(--accent-dark);
+    text-shadow:2px 2px 0 #fff, 3px 3px 0 rgba(0,0,0,.08);
+    text-wrap:balance;
+  }
+  .sub{margin:8px 0 22px;font-size:clamp(14px,4.2vw,18px);font-weight:600;color:#7a6a86;}
+  .sub b{color:var(--accent-dark);}
+
+  .cards{display:flex;flex-direction:column;gap:16px;}
+  .game{
+    display:flex;align-items:center;gap:14px;
+    text-decoration:none;color:var(--ink);text-align:left;
+    background:var(--panel);
+    border:3px solid var(--panel-line);
+    border-radius:22px;
+    padding:16px 18px;
+    box-shadow:0 8px 0 rgba(0,0,0,.10), inset 0 0 0 2px #fff;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .game:active{transform:translateY(5px);box-shadow:0 3px 0 rgba(0,0,0,.10), inset 0 0 0 2px #fff;}
+  .game .ico{
+    flex:0 0 auto;width:62px;height:62px;border-radius:18px;
+    display:flex;align-items:center;justify-content:center;font-size:34px;
+    background:linear-gradient(#fff, #ffe9ef);border:2px solid var(--panel-line);
+  }
+  .game .txt{flex:1;min-width:0;}
+  .game .name{display:block;font-size:clamp(17px,4.6vw,21px);font-weight:800;color:var(--accent-dark);line-height:1.1;}
+  .game .desc{display:block;font-size:clamp(12.5px,3.4vw,14px);color:#8a7a9a;font-weight:600;margin-top:3px;}
+  .game .go{
+    flex:0 0 auto;align-self:center;
+    font-weight:800;font-size:14px;color:#fff;
+    background:linear-gradient(#ff87a3,var(--accent));
+    border-radius:999px;padding:9px 16px;box-shadow:0 4px 0 var(--accent-dark);
+    white-space:nowrap;
+  }
+  .flappy .ico{background:linear-gradient(#fff,#e8f4ff);}
+  .memory .ico{background:linear-gradient(#fff,#fff2d6);}
+
+  .foot{margin-top:24px;font-size:13px;color:#6f6a86;font-weight:600;opacity:.9;}
+  .foot .heart{color:var(--accent);}
+</style>
+</head>
+<body>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+
+  <main class="wrap">
+    <div class="rings">💍</div>
+    <h1>Annalisa &amp; Mauro</h1>
+    <p class="sub">I <b>giochini</b> del matrimonio ✨<br>Scegli e divertiti!</p>
+
+    <div class="cards">
+      <a class="game flappy" href="https://gerardpepper.github.io/FlappyAnnaMauro/">
+        <span class="ico">🐦</span>
+        <span class="txt">
+          <span class="name">Flappy Annalisa &amp; Mauro</span>
+          <span class="desc">Vola tra anelli, fiori e tanti imprevisti!</span>
+        </span>
+        <span class="go">GIOCA ▶</span>
+      </a>
+
+      <a class="game memory" href="https://gerardpepper.github.io/MemoryAnnaMauro/">
+        <span class="ico">🃏</span>
+        <span class="txt">
+          <span class="name">Memory degli Sposi</span>
+          <span class="desc">Trova tutte le coppie di carte!</span>
+        </span>
+        <span class="go">GIOCA ▶</span>
+      </a>
+    </div>
+
+    <p class="foot">Fatto con <span class="heart">❤</span> per il nostro matrimonio</p>
+  </main>
+</body>
+</html>
